@@ -1,0 +1,1341 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body.locked {
+  overflow: hidden;
+}
+
+#lockscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('foto/santi-solo-7.jpg') center/cover no-repeat;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5vh;
+  overflow: hidden; /* penting biar ::before nggak keluar area */
+}
+
+/* Lapisan gradasi siang-malam */
+#lockscreen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* Gradasi dengan garis pemisah diagonal */
+  background: linear-gradient(
+    426deg,
+    rgba(0, 0, 0, 0.6) 3%,
+    /* malam */ rgba(255, 255, 255, 10%) 76%,
+    /* batas garis terang */ rgba(255, 255, 255, 1) 100% /* siang */
+  );
+
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Biar konten di atas gradasi */
+#lockscreen > * {
+  z-index: 2;
+}
+
+#lockscreen.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.lock-content {
+  text-align: center;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: 35px;
+}
+
+.lock-content .sub {
+  letter-spacing: 5px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  margin-top: 20px;
+}
+
+.lock-content .nama {
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 3rem;
+  margin: 0;
+  word-spacing: 20px;
+  text-shadow: 0 2px 2px rgb(0 0 0 / 78%);
+}
+.lock-content .nama1 {
+  font-family: 'Mea Culpa', cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+  margin: 0;
+}
+.lock-content .nama2 {
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+  margin: 0;
+  text-shadow: 0 2px 2px rgb(0 0 0 / 78%);
+}
+
+.lock-content .date {
+  letter-spacing: 5px;
+  font-size: 0.9rem;
+
+  line-height: 20px;
+}
+
+#openInvitation {
+  background: #2a407200;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 0 20px 0 20px;
+  cursor: pointer;
+  text-transform: lowercase;
+  backdrop-filter: blur(3px);
+  border: 1.5px solid #ffffff99;
+  box-shadow: 0 1px 5px rgb(0 0 0 / 51%);
+}
+
+#mempelai {
+  width: 100%;
+  height: 85vh;
+}
+
+.mempelai {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 80vh;
+  padding: 60px 20px;
+  background-image: url(foto/background-atas.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.mempelai.pria {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.mempelai.wanita {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.mempelai-foto {
+  position: relative;
+  width: 270px;
+  margin-bottom: 2rem;
+}
+
+.mempelai-foto img {
+  width: 300px; /* Lebar fix */
+  height: 370px;
+  object-fit: cover;
+  border-radius: 0 0 160px 0; /* sudut organik */
+  display: block;
+  box-shadow: 0px 5px 10px rgb(0 0 0 / 70%);
+}
+
+.mempelai-foto .border-line {
+  position: absolute;
+  top: 10px; /* geser ke bawah biar border nggak nempel atas */
+  left: -10px; /* geser ke kanan biar border masuk */
+  width: calc(110% - 0px); /* lebih kecil dari foto */
+  height: calc(100% - 0px);
+  border: 1.5px solid #09080d;
+  border-radius: 0 0 160px 0;
+  pointer-events: none;
+}
+
+.mempelai-content h2 {
+  font-family: 'Mea Culpa', cursive;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.mempelai-content .desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.sosmed {
+  font-size: 0.8rem;
+}
+
+#pasangan {
+  width: 100%;
+}
+
+.mempelai.wanita {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* rata kanan */
+  text-align: right;
+  min-height: 80vh;
+  padding: 0 20px;
+  background: #f8f4f0;
+  margin-top: 60px;
+  background-image: url(foto/background-bawah.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.mempelai.wanita .mempelai-foto {
+  position: relative;
+  width: 300px; /* samakan fix */
+  height: 370px;
+
+  margin-bottom: 2rem;
+}
+
+.mempelai.wanita .mempelai-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 0 0 160px; /* sudut KIRI BAWAH */
+  display: block;
+}
+
+.mempelai.wanita .mempelai-foto .border-line {
+  position: absolute;
+  top: 8px;
+
+  width: calc(100% - 0px);
+  height: calc(100% - 0px);
+
+  border-radius: 0 0 0 160px;
+
+  left: 6px;
+}
+
+.mempelai.wanita .mempelai-content h2 {
+  font-family: 'Mea Culpa', cursive;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.mempelai.wanita .mempelai-content .desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.mempelai.wanita .sosmed {
+  font-size: 0.8rem;
+}
+
+#love-story {
+  background: #fdf7f1;
+  text-align: center;
+  padding: 0 10px;
+  height: 100vh;
+  padding-top: 50px;
+}
+
+#love-story h2 {
+  font-family: 'Mea Culpa', cursive;
+  font-size: 2.5rem;
+  margin: 0;
+  margin-bottom: 120px;
+}
+
+#love-story h2 span {
+  font-family: serif;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.love-story-slider {
+  width: 100%;
+  padding: 40px 0;
+}
+
+.story-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 220px;
+}
+
+.story-photo {
+  width: 210px;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 100px;
+}
+
+.story-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-content {
+  margin-top: 20px;
+}
+
+.story-content::before {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 30px;
+  background: #aaa;
+  margin: 0 auto 20px auto;
+}
+
+.story-content h3 {
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+.story-content p {
+  font-size: 0.8rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+#love-journey {
+  padding: 30px 20px;
+  position: relative;
+  background-image: url(foto/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#love-journey .journey-title {
+  font-family: 'Mea Culpa', cursive;
+  font-size: 2.5rem;
+  margin-bottom: 60px;
+  text-align: center;
+  margin-top: 0;
+}
+
+#love-journey .journey-title span {
+  font-family: serif;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+
+.journey-wrapper {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.journey-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 40px; /* posisi garis di kiri */
+  width: 2px;
+  height: 100%;
+  background: #ccc;
+}
+
+.journey-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.journey-node {
+  position: relative;
+  z-index: 2;
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-right: 40px;
+  margin-left: 10px; /* geser dari garis */
+}
+
+.journey-node img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.journey-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #ccc;
+}
+
+.journey-content {
+  padding: 20px;
+  border-radius: 8px;
+  flex: 1;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.journey-content::before {
+  content: '';
+  position: absolute;
+  left: -15px;
+  top: calc(50% - 10px); /* segitiga 20px tinggi, geser setengah */
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 15px solid #e9e9e9; /* sama dengan background box */
+}
+
+.journey-content h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.journey-content p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+#special-message {
+  background: #f5f5f5;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+#special-message h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.chat-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.chat-row {
+  display: flex;
+
+  margin-bottom: 40px;
+  align-items: flex-start;
+}
+
+.chat-row.left {
+  justify-content: flex-start;
+}
+
+.chat-row.right {
+  justify-content: flex-end;
+}
+
+.chat-avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.chat-row.left .chat-bubble {
+  background: #ffffff;
+  margin-left: 10px;
+  border-radius: 0 12px 12px 12px;
+}
+
+.chat-row.right .chat-bubble {
+  background: #dcf8c6;
+  margin-right: 10px;
+  border-radius: 12px 0 12px 12px;
+}
+
+.chat-bubble {
+  max-width: 70%;
+  padding: 12px 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  text-align: left;
+}
+
+#special-message .judul {
+  font-family: serif;
+  font-size: 1rem;
+  font-style: italic;
+  word-spacing: 3px;
+  margin-bottom: 100px;
+}
+
+.judul span {
+  font-family: 'Mea Culpa', cursive;
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px; /* tinggi gradasi, atur sesuai selera */
+  background: linear-gradient(to bottom, transparent, #fdf7f1);
+  z-index: 5; /* pastikan di atas slide tapi di bawah quote */
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slider .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity 5s ease-in-out, transform 5s ease-in-out;
+}
+
+.slider .slide.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  z-index: 2;
+}
+
+.hero-content {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+}
+
+.thumbnails {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  justify-content: center;
+  z-index: 4;
+  scrollbar-width: none;
+  height: 10%;
+}
+
+.thumbnails::-webkit-scrollbar {
+  display: none;
+}
+
+.thumb-wrapper {
+  width: 40px;
+  height: 55px;
+  margin: 0 5px;
+  flex: 0 0 auto;
+  transition: transform 0.3s;
+}
+
+.thumb-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.5);
+  opacity: 0.7;
+  transition: opacity 0.3s;
+  background-size: cover;
+  background-position: center;
+}
+
+.thumb-wrapper:hover {
+  transform: scale(1.1);
+}
+
+.thumb-wrapper.active-thumb {
+  transform: scale(1.3);
+  background-size: cover;
+  background-position: center;
+}
+
+.thumb-wrapper.active-thumb img {
+  opacity: 1;
+  background-size: cover;
+  background-position: center;
+}
+
+.slider-quote {
+  position: absolute; /* Biar mengapung */
+  width: 100%;
+  text-align: center;
+  padding: 20px auto;
+
+  position: absolute; /* kalau mau melayang di dalam hero */
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  margin-bottom: 20px;
+}
+
+.slider-quote .quote-text {
+  font-family: serif;
+  font-size: 1rem;
+  font-style: italic;
+  margin: 0.5rem;
+  color: #ffffff;
+}
+
+.slider-quote .quote-author {
+  font-family: 'Mea Culpa', cursive;
+  font-size: 1.3rem;
+  color: #ffffff;
+}
+
+/* SVG wave separator */
+.wave-separator {
+  position: relative;
+  width: 100%;
+  line-height: 0; /* hilangkan spasi extra */
+}
+
+.wave-separator svg {
+  display: block;
+  width: 100%;
+  height: 100px;
+  background-color: #b2445f;
+}
+
+.wave-fill {
+  fill: #f5f5f5; /* sama dengan background .section-bawah */
+}
+
+/* SVG wave separator */
+.wave-separator2 {
+  position: relative;
+  width: 100%;
+  line-height: 0; /* hilangkan spasi extra */
+}
+
+.wave-separator2 svg {
+  display: block;
+  width: 100%;
+  height: 100px;
+  background-color: #f5f5f5;
+}
+
+.wave-fill2 {
+  fill: #fdf7f1; /* sama dengan background .section-bawah */
+}
+
+.wave-separator5 svg {
+  display: block;
+  width: 100%;
+  height: 100px;
+  background-color: #f0e7de;
+}
+
+.wave-fill5 {
+  fill: #f6f0ea; /* sama dengan background .section-bawah */
+}
+
+/* SVG wave separator */
+.wave-separator3 {
+  position: relative;
+  width: 100%;
+  line-height: 0; /* hilangkan spasi extra */
+}
+
+.wave-separator3 svg {
+  display: block;
+  width: 100%;
+  height: 100px;
+  background-color: #111;
+}
+
+.wave-fill3 {
+  fill: #ffffff; /* sama dengan background .section-bawah */
+}
+
+#live-section {
+  position: relative;
+  background: #ffffff; /* bg bawah */
+  overflow: hidden;
+  text-align: center;
+}
+
+.live-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: url('foto/87824.jpg') center/cover no-repeat;
+  filter: blur(3px);
+  z-index: 1;
+}
+
+.live-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.capsule-photo {
+  position: relative;
+  margin-top: calc(50%); /* bikin turun pas di tengah */
+  width: 250px;
+  height: 400px;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 5px 1px 5px rgb(255 255 255);
+}
+
+.capsule-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.live-content {
+  padding: 40px 20px 0px;
+  max-width: 500px;
+}
+
+.live-content h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #606060;
+}
+
+.live-content h2 span {
+  font-family: 'Mea Culpa', cursive;
+  font-size: 2.2rem;
+  font-style: italic;
+  color: #b24761;
+}
+
+.live-content p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.live-content .btn {
+  display: inline-block;
+  background: #ad3f5a;
+  color: #ffffff; /* teks dark */
+  border: 1.5px solid #ddd; /* border soft */
+  padding: 12px 30px; /* lebar & tinggi */
+  border-radius: 20px 0; /* KAPSUL! */
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 60px;
+}
+
+.live-content .btn:hover {
+  background: #ca7896; /* abu muda pas hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.gift-section {
+  background: #fff; /* contoh warna */
+  color: #fff;
+  overflow: hidden;
+}
+
+.gift-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  min-height: 70vh;
+  margin-top: 0;
+}
+
+.gift-photo {
+  flex: 0 0 15%;
+  min-width: 80px;
+  background: url('foto/santi-solo-1.jpg') center/cover no-repeat;
+  position: relative;
+}
+
+.gift-photo::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to top, #111, transparent);
+}
+
+.gift-content {
+  flex: 1;
+  padding: 50px;
+  box-sizing: border-box;
+  background: #111;
+  border-radius: 0 0 0 100px;
+  margin-bottom: 60px;
+}
+
+.gift-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.gift-content p {
+  margin-bottom: 1rem;
+}
+
+.gift-select {
+  display: block;
+  margin: 1rem 0;
+  border-radius: 6px;
+}
+
+.gift-info {
+  font-size: 0.9rem;
+}
+
+.gift-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.gift-form input,
+.gift-form textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 0.9rem;
+  border-radius: 9px;
+}
+
+.gift-form button {
+  padding: 10px 20px;
+  background: #e0bcbc;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 15px 0;
+  margin-bottom: 50px;
+}
+
+@media (max-width: 768px) {
+  .gift-inner {
+    flex-direction: row; /* TETAP SAMPINGAN! */
+  }
+
+  .gift-photo {
+    flex: 0 0 15%; /* lebih lebar di HP */
+    height: 50vh;
+  }
+
+  .gift-content {
+    flex: 1;
+    padding: 30px;
+  }
+
+  .gift-content h2 {
+    font-size: 1.5rem;
+  }
+}
+
+.music-control {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  z-index: 1000;
+}
+
+.music-circle {
+  position: relative;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.249);
+  overflow: hidden;
+}
+
+.music-circle img {
+  width: 70%;
+  height: 70%;
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  animation: rotateAlbum 4s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes rotateAlbum {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.note {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: floatNote 2s infinite ease-in-out;
+}
+
+.note1 {
+  top: -10px;
+  left: 50%;
+  animation-delay: 0s;
+}
+
+.note2 {
+  top: -10px;
+  left: 30%;
+  animation-delay: 0.5s;
+}
+
+.note3 {
+  top: -10px;
+  left: 70%;
+  animation-delay: 1s;
+}
+
+@keyframes floatNote {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.music-control.playing .music-circle img {
+  animation-play-state: running;
+}
+
+.music-control:not(.playing) .music-circle img {
+  animation-play-state: paused;
+}
+
+.wishes-section {
+  padding: 50px 30px;
+  background: #f8f0e8;
+  text-align: center;
+}
+
+.wishes-title {
+  font-family: 'YourFont', serif; /* Sesuaikan dengan font utama */
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.wishes-form {
+  max-width: 400px;
+  margin: 0 auto 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.wishes-form input,
+.wishes-form textarea {
+  padding: 15px;
+  border: none;
+  background: #f3ebe2;
+  font-family: inherit;
+}
+
+.wishes-form textarea {
+  resize: none;
+  height: 80px;
+}
+
+.wishes-form button {
+  background: #333;
+  color: #fff;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.wishes-form button:hover {
+  background: #555;
+}
+
+.wishes-list {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.wish-item {
+  background: #d6c8bd;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.wish-message {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.wish-author {
+  font-size: 14px;
+}
+
+.divider {
+  width: 60%; /* Sesuai panjang garis */
+  height: 1.5px;
+  background: #333;
+}
+
+.divider1 {
+  width: 68%; /* Sesuai panjang garis */
+  height: 2px;
+  background: #000000;
+  margin-left: 20px;
+}
+
+/* SECTION WRAPPER */
+.quote-highlight {
+  position: relative;
+  background: #fdf7f1;
+  text-align: center;
+  padding: 0 0 80px 0;
+}
+
+/* STRIP PENDEK DI ATAS */
+.quote-top-bar {
+  width: 100%;
+  height: 90px; /* tinggi strip pendek */
+  background: #e0d2c1; /* warna bisa kamu ganti */
+  position: relative;
+  z-index: 1;
+}
+
+/* BULATAN FOTO */
+.quote-image-wrapper {
+  width: 331px;
+  height: 337px;
+  border-radius: 0 0 100% 100%;
+  overflow: hidden;
+  margin: -50px auto 40px auto;
+  z-index: 2;
+  position: relative;
+}
+
+.quote-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* LIST QUOTES */
+.quote-list {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.quote-item {
+  margin-bottom: 40px;
+}
+
+.quote-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  font-style: oblique;
+  color: #333;
+  margin: 10px 40px;
+  text-align: justify;
+  margin: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 29px;
+}
+
+.quote-author {
+  display: block;
+  margin-top: 10px;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.snowflake {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.9;
+
+  /* Premium effects */
+  filter: blur(1px) drop-shadow(0 0 4px rgba(255, 255, 255, 0.7));
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.4), 0 0 8px rgba(255, 255, 255, 0.6),
+    0 0 12px rgba(255, 255, 255, 0.8);
+  animation-name: curvedFall;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes curvedFall {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), 100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.quote-text span {
+  font-size: 3rem;
+  font-style: initial;
+  font-family: 'Mea Culpa';
+}
+
+.quote-text1 {
+  font-style: oblique;
+  color: white;
+  margin: 20px;
+}
+
+.thankyou-section {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+.thankyou-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('foto/santi-solo-2.jpg') center/cover no-repeat;
+  z-index: -2;
+}
+
+.thankyou-content {
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+}
+
+.thankyou-text {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.thankyou-logo {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 1rem auto;
+}
+
+.thankyou-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 5px;
+}
+
+.thankyou-btn {
+  width: 35px;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+
+.thankyou-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.comingsoon-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #f2f2f2, #e8e8e8);
+  text-align: center;
+}
+
+.comingsoon-title {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  font-family: 'Mea Culpa', cursive;
+  color: #000000;
+  line-height: 15px;
+}
+
+.comingsoon-title span {
+  font-family: serif;
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.comingsoon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 kolom */
+  gap: 1rem;
+  justify-items: center;
+}
+
+.glass-card {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* kotak persegi */
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease, background 0.3s ease;
+  box-shadow: 0 1px 5px rgb(0 0 0 / 20%);
+}
+
+.glass-card:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .comingsoon-grid {
+    grid-template-columns: repeat(2, 1fr); /* HP jadi 2 kolom */
+  }
+}
+
+@media (max-width: 480px) {
+  .comingsoon-grid {
+    grid-template-columns: 1fr; /* layar kecil 1 kolom */
+  }
+}
+
+
+
+/* Overlay gelap */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.35); /* efek malam */
+  z-index: 2;
+}
+
+/* Container kunang-kunang */
+.fireflies {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 3;
+}
+
+/* Style kunang-kunang */
+.firefly {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgba(255, 230, 120, 0) 70%);
+  border-radius: 50%;
+  opacity: 0;
+  animation: blink 3s infinite, move 10s linear infinite;
+}
+
+/* Kedip */
+@keyframes blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Gerak random */
+@keyframes move {
+  from { transform: translate(0, 0); }
+  to { transform: translate(var(--x), var(--y)); }
+}
